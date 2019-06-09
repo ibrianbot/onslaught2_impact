@@ -107,11 +107,19 @@ O2Engine = ig.Game.extend({
 	loadLevel: function (levelObject) {
 		this.parent(levelObject);
 		this.spawnEntity(EntityReticle, 0, 0);
+		
+		//spawn player if we have a spawn location
 		var location = this.getEntityByName(this.spawnLocation);
 		if (location) {
-			this.spawnEntity(EntityXam, location.pos.x, location.pos.y);
+			if(!this.player) {
+				this.player = this.spawnEntity(EntityXam, location.pos.x, location.pos.y);
+			}
+			else {
+				this.player.pos = location.pos;
+				this.entities.push(this.player);
+			}
 		} else {
-			console.log(location);
+			//console.log(location);
 		}
 		
 		//Create the UI entities
@@ -121,7 +129,9 @@ O2Engine = ig.Game.extend({
 	},
 
 	update: function () {
-
+		
+		var player=this.player;
+				
 		this.parent();
 
 		this.updateViewport();
@@ -166,7 +176,12 @@ O2Engine = ig.Game.extend({
 	},
 
 	getPlayer: function () {
-		return this.getEntitiesByType(EntityXam)[0];
+		if(!this.player) {
+			return this.getEntitiesByType(EntityXam)[0];
+		}
+		else {
+			return this.player;
+		}
 	},
 
 	sortEntities: function () {
