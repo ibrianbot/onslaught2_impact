@@ -26,10 +26,12 @@ EntityWeapon = ig.Entity.extend({
 				x: settings.heading.x * this.maxVel.x,
 				y: settings.heading.y * this.maxVel.y
 			};
+			
+			if (this.currentAnim) {
+				this.currentAnim.angle = this.heading.getAngle();
+			}
 		}
-		if (this.currentAnim) {
-			this.currentAnim.angle = this.heading.getAngle();
-		}
+
 	},
 
 	handleMovementTrace: function (res) {

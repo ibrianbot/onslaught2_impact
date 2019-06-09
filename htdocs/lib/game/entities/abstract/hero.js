@@ -9,6 +9,7 @@ ig.module(
 EntityHero = EntityMob.extend({
 
 	type: ig.Entity.TYPE.A,
+	maxHealth: 100,
 	health: 100,
 
 	sounds: {
@@ -18,6 +19,15 @@ EntityHero = EntityMob.extend({
 	},
 
 	gold: 0,
+	
+	init: function (x, y, settings) {
+		
+		this.parent(x, y, settings);
+		
+		// Load the default sword weapon.
+		this.weapons.push({type:'EntitySword',count:-1});
+		this.currentWeapon = 0;
+	},
 
 	update: function () {
 

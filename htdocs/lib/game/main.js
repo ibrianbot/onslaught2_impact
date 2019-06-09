@@ -7,6 +7,15 @@ ig.module(
 	"impact.game",
 	"impact.font",
 	"math.astar",
+	
+	//Plugins
+	'plugins.font2',
+
+	//UI elements
+	"game.entities.abstract.hud",
+	"game.entities.hud.healthbar",
+	"game.entities.hud.goldcount",
+	"game.entities.hud.weaponslot",
 
 	"game.entities.reticle",
 
@@ -104,6 +113,11 @@ O2Engine = ig.Game.extend({
 		} else {
 			console.log(location);
 		}
+		
+		//Create the UI entities
+		this.entities.push(this.spawnEntity(EntityHealthbar));
+		this.entities.push(this.spawnEntity(EntityGoldCount));
+		this.entities.push(this.spawnEntity(EntityWeaponSlot));
 	},
 
 	update: function () {

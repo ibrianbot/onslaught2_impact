@@ -13,6 +13,11 @@ EntityMob = EntityBase.extend({
 	size: {x: 12, y: 8},
 	offset: {x: 2, y: 8},
 	zIndex: 2,
+	maxHealth: 1, // Max Health will allow for Player and Enemy healthbars
+	
+	// Weapon inventory and equips (might go in hero but enemies also have weapons).
+	weapons: [],
+	currentWeapon: null,
 
 	heading: new Vector(0, 1),
 	waypoints: null,
